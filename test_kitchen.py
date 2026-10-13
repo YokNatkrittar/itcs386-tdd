@@ -1,11 +1,12 @@
 # Test list
-# [ ] 200 g x 3 = 600 g
-# [ ] multiplying a quantity does not modify the original
-# [ ] two quantities with the same amount and unit are equal
+# [x] 200 g x 3 = 600 g
+# [x] multiplying a quantity does not modify the original
+# [x] two quantities with the same amount and unit are equal   (equality works; the unit part comes in A5)
 # [ ] 1 oz is not the same as 1 g
 # [ ] 200 g + 300 g = 500 g
 # [ ] 200 g + 1 oz, reduced to grams, using a conversion rate
 # [ ] (200 g + 1 oz) x 2
+# [ ] Quantity is unhashable (defined __eq__ without __hash__), fix only if needed
 
 from kitchen import Quantity
 
@@ -19,6 +20,7 @@ def test_multiplication_returns_a_new_quantity():
     flour = Quantity(200)
     assert flour.times(3) == Quantity(600)
     assert flour.times(2) == Quantity(400)
+
 
 def test_equality():
     assert Quantity(200) == Quantity(200)
