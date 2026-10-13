@@ -8,8 +8,7 @@
 # [ ] (200 g + 1 oz) x 2
 # [ ] Quantity is unhashable (defined __eq__ without __hash__), fix only if needed
 
-from kitchen import Quantity, grams, ounces
-
+from kitchen import Quantity, grams, ounces, Converter
 
 def test_multiplication():
     flour = grams(200)
@@ -29,3 +28,8 @@ def test_equality():
 
 def test_grams_are_not_ounces():
     assert grams(1) != ounces(1)
+    
+def test_simple_addition():
+    total = grams(200).plus(grams(300))
+    converter = Converter()
+    assert converter.reduce(total, "g") == grams(500)
